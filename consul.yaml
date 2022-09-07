@@ -1,0 +1,17 @@
+version: '3.7'
+networks:
+  persist:
+    name: public-net
+
+services:
+  consul:
+    image: consul:latest
+    container_name: consul-dev
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 8500:8500
+    command: agent -server -bootstrap -ui -node=1 -client='0.0.0.0'
+    networks:
+      persist:
+        ipv4_address: 172.20.1.13

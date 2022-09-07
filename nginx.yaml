@@ -1,0 +1,23 @@
+version: '3.7'
+networks:
+  persist:
+    name: public-net
+
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - 9002:80
+      - 9443:443
+    volumes:
+      - /Users/cody/Developer/docker/nginx/conf/conf.d:/etc/nginx/conf.d
+      - /Users/cody/Developer/docker/nginx/log:/var/log/nginx
+      - /Users/cody/Developer/docker/nginx/html:/usr/share/nginx/html
+      - /Users/cody/Developer/docker/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      persist:
+        ipv4_address: 172.20.1.14

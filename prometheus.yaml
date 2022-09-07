@@ -1,0 +1,19 @@
+version: '3.7'
+networks:
+  persist:
+    name: public-net
+
+services:
+  prometheus:
+    image: bitnami/prometheus:latest
+    container_name: prometheus
+    environment:
+      TZ: Asia/Shanghai
+    volumes:
+      - /Users/cody/Developer/docker/prometheus/conf:/opt/bitnami/prometheus/conf
+      - /Users/cody/Developer/docker/prometheus/data:/opt/bitnami/prometheus/data
+    ports:
+      - 9090:9090
+    networks:
+      persist:
+        ipv4_address: 172.20.1.10

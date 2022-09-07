@@ -1,0 +1,22 @@
+version: '3.7'
+networks:
+  persist:
+    name: public-net
+
+services:
+  nacos:
+    image: nacos/nacos-server:v2.1.1-slim
+    container_name: nacos
+    environment:
+      TZ: Asia/Shanghai
+      JVM_XMS: 248m
+      JVM_XMX: 512m
+    volumes:
+      - /Users/cody/Developer/docker/nacos/conf:/home/nacos/conf
+      - /Users/cody/Developer/docker/nacos/data:/home/nacos/data
+      - /Users/cody/Developer/docker/nacos/target:/home/nacos/target
+    ports:
+      - 8848:8848
+    networks:
+      persist:
+        ipv4_address: 172.20.1.5
